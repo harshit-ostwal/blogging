@@ -1,0 +1,28 @@
+{
+  "name": "blogging-platform",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "biome:format": "bunx biome format --write",
+    "biome:lint": "bunx biome lint --write",
+    "biome:check": "bunx biome check --write",
+    "biome:clean": "bunx biome clean"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "axios": "^1.14.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.7",
+    "globals": "^17.4.0",
+    "@biomejs/biome": "^2.4.10"
+  }
+}
