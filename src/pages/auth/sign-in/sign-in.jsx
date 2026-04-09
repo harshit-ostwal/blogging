@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/input-group";
 import { PasswordStrength } from "@/components/ui/password-strength";
 import { useAuth } from "@/providers/auth-provider";
+
 // SignInSchema will be dynamically imported
 
 function SignIn() {
@@ -45,7 +46,9 @@ function SignIn() {
                 setSchema(SignInSchema);
             }
         })();
-        return () => { mounted = false; };
+        return () => {
+            mounted = false;
+        };
     }, []);
 
     const signInForm = useForm({

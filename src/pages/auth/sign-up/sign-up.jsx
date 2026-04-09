@@ -25,6 +25,7 @@ import { PasswordStrength } from "@/components/ui/password-strength";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { userRoles } from "@/constants/roles";
 import { useAuth } from "@/providers/auth-provider";
+
 // signUpSchema will be dynamically imported
 
 function SignUp() {
@@ -49,7 +50,9 @@ function SignUp() {
                 setSchema(signUpSchema);
             }
         })();
-        return () => { mounted = false; };
+        return () => {
+            mounted = false;
+        };
     }, []);
 
     const signUpForm = useForm({
