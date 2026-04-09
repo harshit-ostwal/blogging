@@ -8,7 +8,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { Heading } from "../headings";
+import { Heading } from "@components/ui/Headings";
 
 export function DataTableColumnHeader({ column, title, className }) {
     if (!column.getCanSort()) {
