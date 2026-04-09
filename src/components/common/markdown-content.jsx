@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { NavLink } from "react-router";
 import remarkGfm from "remark-gfm";
-import { Heading } from "../ui/headings";
+import { Heading } from "@/components/ui/Headings";
 import { ImageComp } from "../ui/image";
 import {
     Table,

@@ -14,7 +14,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { Heading } from "../ui/Headings";
+import { Heading } from "@/components/ui/Headings";
 
 function Navbar() {
     const [loading, setLoading] = useState(false);

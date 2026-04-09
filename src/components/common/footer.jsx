@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading } from "../ui/Headings";
+import { Heading } from "@/components/ui/Headings";
 
 function Footer() {
     return (
