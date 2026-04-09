@@ -1,5 +1,5 @@
-// zodResolver will be dynamically imported
-const MDEditor = React.lazy(() => import("@uiw/react-md-editor"));
+
+import MDEditor from "@uiw/react-md-editor";
 
 import { Heading1, X } from "lucide-react";
 import React, { Suspense, useEffect, useState } from "react";
@@ -42,20 +42,11 @@ const ArticleForm = ({ type, article }) => {
     const { createArticle, updateArticle } = useArticle();
 
     useEffect(() => {
-        let mounted = true;
-        (async () => {
-            const [{ zodResolver }, schemaModule] = await Promise.all([
-                import("@hookform/resolvers/zod"),
-                import("@/schema/articles/article"),
-            ]);
-            if (mounted) {
-                setResolver(() => zodResolver);
-                setSchemas(schemaModule);
-            }
-        })();
-        return () => {
-            mounted = false;
-        };
+        // Static import for zodResolver and schema
+        const { zodResolver } = require("@hookform/resolvers/zod");
+        const schemaModule = require("@/schema/articles/article");
+        setResolver(() => zodResolver);
+        setSchemas(schemaModule);
     }, []);
 
     const articleForm = useForm({

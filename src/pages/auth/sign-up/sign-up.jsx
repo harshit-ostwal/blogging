@@ -39,20 +39,11 @@ function SignUp() {
     const [schema, setSchema] = useState();
 
     useEffect(() => {
-        let mounted = true;
-        (async () => {
-            const [{ zodResolver }, { signUpSchema }] = await Promise.all([
-                import("@hookform/resolvers/zod"),
-                import("@/schema/auth/sign-up"),
-            ]);
-            if (mounted) {
-                setResolver(() => zodResolver);
-                setSchema(signUpSchema);
-            }
-        })();
-        return () => {
-            mounted = false;
-        };
+        // Static import for zodResolver and signUpSchema
+        const { zodResolver } = require("@hookform/resolvers/zod");
+        const { signUpSchema } = require("@/schema/auth/sign-up");
+        setResolver(() => zodResolver);
+        setSchema(signUpSchema);
     }, []);
 
     const signUpForm = useForm({
