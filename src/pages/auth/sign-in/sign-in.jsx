@@ -149,7 +149,7 @@ function SignIn() {
                 </Field>
               )}
             />
-            <PasswordStrength password={signInForm.watch("password")} />
+            <PasswordStrength password={signInForm.watch("password") || ""} />
           </FieldGroup>
         </FieldSet>
         <Button isLoading={loading} disabled={loading} type="submit">
