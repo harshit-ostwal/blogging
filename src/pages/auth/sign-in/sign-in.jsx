@@ -1,3 +1,4 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, Lock, Mail, Unlock } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -19,6 +20,7 @@ import {
 } from "@/components/ui/input-group";
 import { PasswordStrength } from "@/components/ui/password-strength";
 import { useAuth } from "@/providers/auth-provider";
+import { SignInSchema } from "@/schema/auth/sign-in";
 
 function SignIn() {
   const [loading, setLoading] = useState(false);
@@ -27,19 +29,8 @@ function SignIn() {
   const { signIn } = useAuth();
   const navigate = useNavigate();
 
-  const [resolver, setResolver] = useState();
-  const [schema, setSchema] = useState();
-
-  useEffect(() => {
-    // Static import for zodResolver and SignInSchema
-    const { zodResolver } = require("@hookform/resolvers/zod");
-    const { SignInSchema } = require("@/schema/auth/sign-in");
-    setResolver(() => zodResolver);
-    setSchema(SignInSchema);
-  }, []);
-
   const signInForm = useForm({
-    resolver: resolver && schema ? resolver(schema) : undefined,
+    resolver: zodResolver(SignInSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -149,7 +140,7 @@ function SignIn() {
                 </Field>
               )}
             />
-            <PasswordStrength password={signInForm.watch("password") || ""} />
+            <PasswordStrength password={signInForm.watch("password")} />
           </FieldGroup>
         </FieldSet>
         <Button isLoading={loading} disabled={loading} type="submit">

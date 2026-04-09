@@ -1,4 +1,4 @@
-// zodResolver will be dynamically imported
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -25,8 +25,7 @@ import { PasswordStrength } from "@/components/ui/password-strength";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { userRoles } from "@/constants/roles";
 import { useAuth } from "@/providers/auth-provider";
-
-// signUpSchema will be dynamically imported
+import { signUpSchema } from "@/schema/auth/sign-up";
 
 function SignUp() {
     const [loading, setLoading] = useState(false);
@@ -35,19 +34,8 @@ function SignUp() {
     const { signUp } = useAuth();
     const navigate = useNavigate();
 
-    const [resolver, setResolver] = useState();
-    const [schema, setSchema] = useState();
-
-    useEffect(() => {
-        // Static import for zodResolver and signUpSchema
-        const { zodResolver } = require("@hookform/resolvers/zod");
-        const { signUpSchema } = require("@/schema/auth/sign-up");
-        setResolver(() => zodResolver);
-        setSchema(signUpSchema);
-    }, []);
-
     const signUpForm = useForm({
-        resolver: resolver && schema ? resolver(schema) : undefined,
+        resolver: zodResolver(signUpSchema),
         defaultValues: {
             fullName: "",
             email: "",
