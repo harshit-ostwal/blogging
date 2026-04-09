@@ -1,4 +1,4 @@
-import Loading from "@/components/common/Loading";
+import Loading from "@/components/common/loading";
 import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
