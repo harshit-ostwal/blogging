@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 import React from "react";
 import { categoryOptions } from "@/constants/article";
 import { Badge } from "../ui/badge";
-import { Heading } from "../ui/Headings";
+import { Heading } from "../ui/headings";
 import {
     InputGroup,
     InputGroupAddon,

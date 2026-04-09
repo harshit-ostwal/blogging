@@ -2,7 +2,7 @@ import { X } from "lucide-react";
 import * as React from "react";
 import { useMemo } from "react";
 import { cn } from "@/lib/utils";
-import { Heading } from "./Headings";
+import { Heading } from "./headings";
 import { Progress } from "./progress";
 
 function PasswordStrength({ password = "" }) {

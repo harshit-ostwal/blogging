@@ -11,7 +11,7 @@ import {
     FieldLabel,
     FieldSet,
 } from "@/components/ui/field";
-import { Heading } from "@/components/ui/Headings";
+import { Heading } from "@/components/ui/headings";
 import { ImageComp } from "@/components/ui/image";
 import {
     InputGroup,

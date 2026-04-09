@@ -2,7 +2,7 @@ import { formatDate } from "date-fns";
 import React from "react";
 import { NavLink } from "react-router";
 import { Badge } from "../ui/badge";
-import { Heading } from "../ui/Headings";
+import { Heading } from "../ui/headings";
 import { ImageComp } from "../ui/image";
 
 function ArticleCard({ article }) {

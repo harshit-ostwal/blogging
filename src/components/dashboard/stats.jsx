@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import { statsCard } from "@/constants/dashboard";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import { Heading } from "../ui/Headings";
+import { Heading } from "../ui/headings";
 
 function Stats({ stats }) {
     const autoplayPlugin = useMemo(
