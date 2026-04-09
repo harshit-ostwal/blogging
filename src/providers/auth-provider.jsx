@@ -1,76 +1,80 @@
-import { StorageKeys } from "@/constants/storage-keys";
-import {
-  getLocalStorageItem,
-  setLocalStorageItem,
-} from "@/utils/localStorage.utils";
 import { nanoid } from "nanoid";
 import { createContext, useContext, useState } from "react";
+import { toast } from "sonner";
+import { StorageKeys } from "@/constants/storage-keys";
+import {
+    getLocalStorageItem,
+    setLocalStorageItem,
+} from "@/utils/localStorage.utils";
 
-const AuthContext = createContext({
-  loggedInUser: null,
-  fetchUserByEmail: () => {},
-  signIn: () => {},
-  signUp: () => {},
-});
+const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [users, setUsers] = useState(
-    getLocalStorageItem(StorageKeys.USERS) || [],
-  );
+    const [users, setUsers] = useState(
+        getLocalStorageItem(StorageKeys.USERS) || []
+    );
 
-  const [loggedInUser, setLoggedInUser] = useState(
-    getLocalStorageItem(StorageKeys.LOGGEDINUSER) || null,
-  );
+    const [loggedInUser, setLoggedInUser] = useState(
+        getLocalStorageItem(StorageKeys.LOGGEDINUSER) || null
+    );
 
-  const fetchUserByEmail = (email) => {
-    const user = users.find((user) => user.email === email);
-
-    if (!user) {
-      throw new Error("User not found");
-    }
-
-    return user;
-  };
-
-  const signUp = (data) => {
-    const existingUser = fetchUserByEmail(data.email);
-
-    if (existingUser) {
-      throw new Error("User already exists");
-    }
-
-    const newUser = {
-      id: nanoid(),
-      ...data,
+    const fetchUserByEmail = (email) => {
+        return users.find((user) => user.email === email);
     };
 
-    setUsers([...users, newUser]);
-    setLocalStorageItem(StorageKeys.USERS, [...users, newUser]);
-  };
+    const signUp = (data) => {
+        const existingUser = fetchUserByEmail(data.email);
 
-  const signIn = (data) => {
-    const user = fetchUserByEmail(data.email);
+        if (existingUser) {
+            toast.error("Account already exists, Please try again later.");
+            return false;
+        }
 
-    if (user.password !== data.password) {
-      throw new Error("Invalid credentials, Please try again later.");
-    }
+        const newUser = {
+            id: nanoid(),
+            ...data,
+        };
 
-    setLoggedInUser(user);
-    setLocalStorageItem(StorageKeys.LOGGEDINUSER, user);
-  };
+        setUsers([...users, newUser]);
+        setLocalStorageItem(StorageKeys.USERS, [...users, newUser]);
+        toast.success("Sign up successfull.");
+        return true;
+    };
 
-  return (
-    <AuthContext.Provider
-      value={{
-        loggedInUser,
-        fetchUserByEmail,
-        signIn,
-        signUp,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+    const signIn = (data) => {
+        const user = fetchUserByEmail(data.email);
+
+        if (user.password !== data.password) {
+            toast.error("Invalid credentials, Please try again later.");
+            return false;
+        }
+
+        setLoggedInUser(user);
+        setLocalStorageItem(StorageKeys.LOGGEDINUSER, user);
+        toast.success("Sign in successfull.");
+        return true;
+    };
+
+    const signOut = () => {
+        setLoggedInUser(null);
+        localStorage.removeItem(StorageKeys.LOGGEDINUSER);
+        toast.success("Sign out successfull.");
+        return true;
+    };
+
+    return (
+        <AuthContext.Provider
+            value={{
+                loggedInUser,
+                fetchUserByEmail,
+                signIn,
+                signUp,
+                signOut,
+            }}
+        >
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
 const useAuth = () => useContext(AuthContext);

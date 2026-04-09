@@ -38,6 +38,12 @@
     "linter": {
         "enabled": true,
         "rules": {
+            "nursery": {
+                "useSortedClasses": {
+                    "level": "on",
+                    "fix": "safe"
+                }
+            },
             "recommended": false,
             "correctness": {
                 "noUnusedVariables": "warn",
