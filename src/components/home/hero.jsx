@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router";
 import { Button } from "../ui/button";
-import { Heading } from "../ui/headings";
+import { Heading } from "../ui/Headings";
 
 function Hero() {
     return (

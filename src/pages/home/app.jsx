@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import ArticleCard from "@/components/common/article-card";
 import Hero from "@/components/home/hero";
-import { Heading } from "@/components/ui/headings";
+import { Heading } from "@/components/ui/Headings";
 import { ImageComp } from "@/components/ui/image";
 import { useArticle } from "@/providers/article-provider";
 
