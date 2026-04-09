@@ -11,7 +11,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
-import { Heading } from "@/components/ui/headings";
+import { Heading } from "@/components/ui/Headings";
 import { ImageComp } from "@/components/ui/image";
 import { statusOptions } from "@/constants/article";
 import { useArticle } from "@/providers/article-provider";

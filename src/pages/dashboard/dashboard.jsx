@@ -4,7 +4,7 @@ import { columns } from "@/components/dashboard/columns";
 import Stats from "@/components/dashboard/stats";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table/data-table";
-import { Heading } from "@/components/ui/headings";
+import { Heading } from "@/components/ui/Headings";
 import { useArticle } from "@/providers/article-provider";
 import { useAuth } from "@/providers/auth-provider";
 

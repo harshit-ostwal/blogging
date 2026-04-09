@@ -8,7 +8,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Heading } from "@/components/ui/headings";
+import { Heading } from "@/components/ui/Headings";
 import { useArticle } from "@/providers/article-provider";
 
 function EditArticle() {
